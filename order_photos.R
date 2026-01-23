@@ -45,13 +45,13 @@ info <- info[order(info$datetime), ]
 
 # --- Step 2: Copy & rename with timestamp ---
 for (i in seq_len(nrow(info))) {
-  
+
   ts <- format(info$datetime[i], "%Y%m%d_%H%M%S")
   ext <- tolower(tools::file_ext(info$SourceFile[i]))
-  
+
   new_name <- sprintf("%s_%04d.%s", ts, i, ext)
   new_path <- file.path(output_dir, new_name)
-  
+
   file.copy(info$SourceFile[i], new_path, overwrite = TRUE)
 }
 
